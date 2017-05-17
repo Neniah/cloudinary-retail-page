@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import logo from './logo.svg';
 import './App.css';
 
 const ImageTransformations = ({width, selectedShirt}) => {
@@ -43,9 +42,9 @@ class App extends Component {
             </div>
             <div id="imageThumb">
               <ul id="thumbs">
-                {this.state.shirts.map(thumbs => {
+                {this.state.shirts.map(thumb => {
                   return (
-                    <li className={thum.main === this.state.selectedShirt.main ? 'active': ''} onClick={this.selectedShirt.bind(this, thumb)} key={thum.id}>
+                    <li className={thumb.main === this.state.selectedShirt.main ? 'active': ''} onClick={this.selectedShirt.bind(this, thumb)} key={thumb.id}>
                     {/*<Image prublicId={thumb.main}>*/}
                       {/*<Transformation width="75" crop="scale" />*/}
                     {/*</Image>*/}
