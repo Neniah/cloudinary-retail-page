@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import './App.css';
 
-const ImageTransformations = ({width, selectedShirt}) => {
+const ImageTransformations = ({width, rgb, selectedShirt, text}) => {
   return (
     <Image prublicId={selectedShirt.main +'.jpg'}>
       <Transformation width={width} crop="scale"/>
+      <Transformation effect={'red:' + ((-1 + rgb.r/255)*100).toFixed(0)} />
+      <Transformation effect={'blue:' + ((-1 + rgb.b/255)*100).toFixed(0)} />
+      <Transformation effect={'green:' + ((-1 + rgb.g/255)*100).toFixed(0)} />
+      <Transformation underlay={selectedShirt.underlay} flags="relative" width="1.0" />
+      <Transformation overlay={selectedShirt.overlay} flags="relative" width="1.0" />
     </Image>
   );
 };
@@ -13,22 +18,29 @@ const ImageTransformations = ({width, selectedShirt}) => {
 class App extends Component {
   constructor(props){
     super(props);
-    const defaultShirt = {id: 1, main: 'shirt_only'};
+    const defaultShirt = {id: 1, main: 'shirt_only', underlay: 'model2', overlay: ''};
     this.state = {
       shirts: [
         defaultShirt,
-        {id: 2, main: 'laying-shirt'},
-        {id: 3, main: 'hanging_t-shirt'}
+        {id: 2, main: 'laying-shirt', underlay: '', overlay: ''},
+        {id: 3, main: 'hanging_t-shirt', underlay: '', overlay: 'hanger'}
       ],
+      text: ' ',
       selectedShirt: defaultShirt,
+      background: {rgb:{r:255, g:255, b:255}}
     };
   }
+
+  handleColorChange(color){
+    this.setState({background: color}, _ => this.forceUpdate());
+  };
 
   selectedShirt(thumb){
     this.setSatate({ selectedShirt: thumb}, _ => this.forceUpdate())
   }
 
   render() {
+    const rgb = this.state.background.rgb;
     return (
       <div className="App">
         <CloudinaryContext cloudName="marialobillo-com">
