@@ -3,3 +3,22 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+
+#imageDemoContainer{
+  width:40%;
+  float:left;
+  margin: 2%;
+  display:inline;
+}
+
+#imageThumb{
+  width: 20%;
+  float: right;
+}
+
+#demoInputContainer{
+  width: 25%;
+  display:inline;
+  float:right;
+}
