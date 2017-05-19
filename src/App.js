@@ -25,7 +25,7 @@ class App extends Component {
       shirts: [
         defaultShirt,
         {id: 2, main: 'laying-shirt', underlay: '', overlay: ''},
-        {id: 3, main: 'hanging_t-shirt', underlay: '', overlay: 'hanger'}
+        {id: 3, main: 'hanging_t-shirt', underlay: '', overlay: ''}
       ],
       text: ' ',
       selectedShirt: defaultShirt,
@@ -47,10 +47,10 @@ class App extends Component {
 
   render() {
     const rgb = this.state.background.rgb;
-    
+
     return (
       <div className="App">
-        <CloudinaryContext cloudName="marialobillo-com">
+        <CloudinaryContext cloudName="christekh">
           <div id="demoContainer">
             <div id="header">
               <a href="http://cloudinary.com/">
